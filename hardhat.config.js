@@ -3,8 +3,11 @@
  */
 
 require("@nomiclabs/hardhat-waffle");
+require('dotenv').config();
+
 const fs = require('fs');
 const privateKey = fs.readFileSync(".secret").toString().trim() || "01234567890123456789";
+const alchemyKey = process.env.ALCHEMY_KEY;
 
 module.exports = {
   defaultNetwork: "hardhat",
@@ -13,7 +16,7 @@ module.exports = {
       chainId: 1337
     },
     mumbai: {
-      url: "https://rpc-mumbai.matic.today",
+      url: alchemyKey,
       accounts: [privateKey]
     }
   },
